@@ -1,1 +1,3 @@
 # JWT-AUTH
+
+yarn install
