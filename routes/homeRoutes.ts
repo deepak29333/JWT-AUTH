@@ -1,10 +1,10 @@
 import Router from 'koa-router';
 import {authMiddleware} from "../middleware/authMiddleware";
+import {UserController} from "../controllers/UserController";
 
+const userController = new UserController()
 const router = new Router();
 
-router.get('/protected', authMiddleware, (ctx) => {
-  ctx.body = {message: "This is a protected route", user: ctx.state.user};
-});
+router.get('/users', authMiddleware, (ctx) => userController.getUsers(ctx));
 
 export default router;

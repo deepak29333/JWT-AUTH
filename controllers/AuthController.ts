@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {UserRepository} from "../repository/UserRepository";
 import {User} from "@prisma/client";
+import redisClient from "../redis/redisClient";
 
 const JWT_SECRET = "your_secret_key"
 
@@ -23,6 +24,7 @@ export class AuthController extends BaseController {
 
       body.password = await bcrypt.hash(body.password, 10);
       await this.userRepository.create(body);
+      await redisClient.del('/users');
       return this.okResult(ctx, "ok")
     } catch (error: any) {
       return this.error(ctx, "error", 400)
@@ -42,7 +44,7 @@ export class AuthController extends BaseController {
 
       // Generate JWT token
       const token = jwt.sign({userId: user.id}, JWT_SECRET, {
-        expiresIn: "1h",
+        expiresIn: "2h",
       });
 
       return this.okResult(ctx, "Login successful", {token})
