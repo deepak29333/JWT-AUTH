@@ -5,7 +5,6 @@ const JWT_SECRET = "your_secret_key";
 
 export const authMiddleware = async (ctx: any, next: any) => {
   const authHeader = ctx.headers.authorization;
-  console.log(ctx.url);
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     ctx.status = 401;

@@ -1,7 +1,7 @@
 import { createClient } from 'redis';
 
 const redisClient = createClient({
-  url: 'redis://localhost:6379',  // Replace this with your Redis URL if using a hosted Redis service
+  url: 'redis://localhost:6379',  // Replace this with your Redis URL if using a hosted Redis service\
 });
 
 (async () => {
