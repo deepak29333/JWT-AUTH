@@ -12,5 +12,5 @@ export const rateLimiter = rateLimit({
     reset: 'Rate-Limit-Reset',
     total: 'Rate-Limit-Total',
   },
-  max: 20, // Maximum 100 limit
+  max: 10, // Maximum 100 limit
 })
